@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<h2>Abput agr</h2>
 		<div class="skot active"></div>
 		<div class="skot"></div>
@@ -21,6 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
+// @import "./assets/scss/_misc/_vars.scss";
 	.skot{
 		width: 100px;
 		height: 100px;
@@ -29,5 +30,10 @@ export default {
 		&.active{
 			background-color: pink;
 		}
+	}
+	.container{
+		position: relative;
+		margin: 0 auto;
+		max-width: $lg;
 	}
 </style>

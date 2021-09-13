@@ -1,0 +1,24 @@
+$maxWidth: 1920;//ширина макета в граф. редакторе
+$maxWidthContainer: 1200;//ширина ограничивающего контейнера
+
+// media
+$lg: 1199px;
+$md: 991px;
+$sm: 767px;
+$xs: 576px;
+$xss: 480px;
+
+// Customization Bootstrap vars from "app/libs/bootstrap/scss/_variables.scss"
+$grid-gutter-width: 30px;
+$grid-columns: 12;
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1170px);
+
+$gutter: $grid-gutter-width;
+
+// $roboto-slab: 'Roboto Slab', $georgia;
+// $roboto-slab-b: 'RobotoSlabBold', $georgia;
+// $roboto: 'Roboto', $helvetica;
+// $arial: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+
