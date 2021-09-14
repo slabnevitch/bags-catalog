@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navbar/>
+    <Header/>
     <main>
-      <div class="container">
+      <div class="wrapper">
         <Nuxt />
         
       </div>

@@ -26,6 +26,7 @@ html, body{
 	padding: 0;
 }
 body{
+	// font-family: $pt-bold;
 	font-family: 'PT Sans', sans-serif;
 	font-weight: normal;
 	font-size: 15px;
@@ -33,7 +34,7 @@ body{
 	position: relative;
 	// line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
-	overflow-x: hidden;
+
 }
 
 ul, li{
@@ -59,7 +60,12 @@ textarea.input{
 }
 //END input
 .wrapper{
-
+	position: relative;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	max-width: $maxWidthContainer + px;
+	// outline: 1px solid;
 }
 .justify{
 	content: '';

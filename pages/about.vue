@@ -31,9 +31,6 @@ export default {
 			background-color: pink;
 		}
 	}
-	.container{
-		position: relative;
-		margin: 0 auto;
-		max-width: $lg;
-	}
+	
+
 </style>

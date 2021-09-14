@@ -1,2 +1,15 @@
-@import "bourbon/bourbon"
-// +font-face("RobotoRegular", "../fonts/RobotoRegular/RobotoRegular", $file-formats: eot woff ttf)
+// @import "bourbon/bourbon"
+@mixin font($fname, $fstyle, $fweight, $furl)
+
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		src: url($furl) format('woff2')
+
+
+// +font-face("PT Sans Bold", "static/fonts/PT_Sans/PTSans-Bold", $file-formats: woff woff2 ttf)
+// +font-face("PT Sans Regular", "static/fonts/PT_Sans/PTSans-Regular", $file-formats: woff woff2 ttf)
+
++font('PT Sans', bold, 700, '/fonts/PT_Sans/PTSans-Bold')
++font('PT Sans', normal, 400, '/fonts/PT_Sans/PTSans-Regular')
