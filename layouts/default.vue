@@ -7,6 +7,7 @@
         
       </div>
     </main>
+    <Cart></Cart>
   </div>
 </template>
 

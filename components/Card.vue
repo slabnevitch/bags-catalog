@@ -1,9 +1,9 @@
 <template>
 	<div class="card">
 		<div class="card__header">
-			<div class="card__rating">
+			<div class="product-rating">
 				<img src="/img/rate-start.svg" alt="star">
-				<div class="card__rating-value">4.5</div>
+				<div class="product-rating-value">4.5</div>
 			</div>
 			<div class="card__to-cart">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,8 +17,8 @@
 		<div class="card__img _prod-img">
 			<img src="/img/product.jpg" alt="">
 		</div>
-		<div class="card__title">Рюкзак Louis Vuitton Discovery</div>
-		<div class="card__price">150 000 ₽</div>
+		<div class="product-title">Рюкзак Louis Vuitton Discovery</div>
+		<div class="product-price">150 000 ₽</div>
 	</div>
 </template>
 
@@ -53,11 +53,11 @@ border-radius: 8px;
 	align-items: center;
 	z-index: 2;
 }
-.card__rating {
+.product-rating {
 	display: flex;
 	align-items: center;
 }
-.card__rating-value {
+.product-rating-value {
 	margin-left: 5px;
 	color: #F2C94C;
 	font-size: 10px;
@@ -70,7 +70,7 @@ line-height: 13px;
 ._prod-img {
 	margin-bottom: 16px;
 }
-.card__title {
+.product-title {
 	margin-bottom: 6px;
 	font-size: 14px;
 line-height: 18px;
@@ -78,7 +78,7 @@ line-height: 18px;
 
 color: #59606D;
 }
-.card__price {
+.product-price {
 	font-weight: bold;
 font-size: 14px;
 line-height: 18px;
