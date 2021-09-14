@@ -98,9 +98,9 @@ position: relative;
 }
 ._prod-img {
 	position: relative;
-	padding-bottom: 80%;//quadrat
+	padding-bottom: 79%;//quadrat
 	img{
-		@include absolute-center-old;
+		@include absolute-center;
 	}
 }
 ._fit img{//_fit - class for object-fit

@@ -47,7 +47,7 @@ export default {
 	.wrapper {}
 	.header__inner {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, auto);
 		justify-content: space-between;
 		align-items: center;
 		min-height: 66px;
@@ -62,7 +62,6 @@ export default {
 		color: #59606D
 	}
 	.header__cart {
-		justify-self: end;
 	}
 	.cart-header {
 		position: relative;

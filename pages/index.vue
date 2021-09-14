@@ -9,6 +9,14 @@
 	  <article class="catalog">
 	  	<Navbar></Navbar>
 	  	<div class="catalog__content">
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
+	  		<Card></Card>
 	  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
 	  	</div>
 	  </article>
@@ -42,10 +50,12 @@ export default {
 
 .catalog {
 	display: grid;
-	grid-template-columns: 144px 1fr;
-	column-gap: 16px;
+	grid-template-columns: 161px 1fr;
+	// column-gap: 16px;
 }
 .catalog__content {
 	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+	grid-gap: 16px;
 }
 </style>

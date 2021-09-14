@@ -2,7 +2,7 @@
 	<div class="product-filter">
 		<div class="product-filter__action" @click="filterVisibility = !filterVisibility">
 			<div class="product-filter__key">Сортировать по:</div>
-			<div class="product-filter__value">цене</div>
+			<div class="product-filter__value">{{currentValue}}</div>
 			<div class="product-filter__arrow">
 				<svg width="5" height="3" viewBox="0 0 5 3" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M5 0H0L2.5 2.5L5 0Z" fill="#59606D"/>
@@ -11,8 +11,11 @@
 			
 		</div>
 		<ul class="product-filter__dropdown" :class="{'visible': filterVisibility}">
-			<li class="product-filter__item">По цене</li>
-			<li class="product-filter__item">По популярности</li>
+			<li class="product-filter__item" v-for="value in allValues"
+				:key="value"
+				@click="changeValue(value)"
+				:class="{'active': value === currentValue}">По {{value}}</li>
+
 		</ul>
 	</div>
 </template>
@@ -24,12 +27,15 @@ export default {
 
   data () {
     return {
-    	filterVisibility: false
+    	filterVisibility: false,
+    	currentValue: 'цене',
+    	allValues: ['цене', 'популярности']
     }
   },
   methods: {
-  	filterClick(){
-
+  	changeValue(value){
+  		this.currentValue = value;
+  		this.filterVisibility = false;
   	}
   },
   mounted(){
@@ -54,6 +60,7 @@ export default {
 	font-size: 16px;
 	line-height: 21px;
 	cursor: pointer;
+	z-index: 5;
 }
 .product-filter__action{
 	display: flex;
