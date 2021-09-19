@@ -1,8 +1,8 @@
 <template>
-	<div class="cart">
+	<div class="cart" v-click-outside="cartHide">
 		<div class="cart__header">
 			<div class="cart__title">Корзина</div>
-			<div class="cart__close">
+			<div class="cart__close" @click="cartHide">
 				<img src="/img/close.svg" alt="">
 			</div>
 		</div>
@@ -49,19 +49,29 @@
 				<input type="text" class="form-cart__input" placeholder="Адрес">
 			</label>
 			<button class="btn">Отправить</button>
+			<button class="btn">Перейти к выбору</button>
 		</div>
 	</div>
 </template>
 
 <script>
+	import ClickOutside from 'vue-click-outside'
 export default {
 
   name: 'Cart',
-
+  props: ['cartOpen'],
   data () {
     return {
 
     }
+  },
+  methods: {
+  	cartHide(){
+  		this.$emit('update:cartOpen', false)
+  	}
+  },
+  directives: {
+    ClickOutside
   }
 }
 </script>

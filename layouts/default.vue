@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Header/>
+    
     <main>
       <div class="wrapper">
         <Nuxt />
         
       </div>
     </main>
-    <Cart></Cart>
+
   </div>
 </template>
 

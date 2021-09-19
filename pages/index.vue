@@ -1,35 +1,44 @@
 <template>
   <!-- <Tutorial/> -->
-  <main class="page">
-  	<div class="page__header">
-  		<div class="page__title">Каталог</div>
-  		<ProductFilter></ProductFilter>
-  		
-  	</div>
-	  <article class="catalog">
-	  	<Navbar></Navbar>
-	  	<div class="catalog__content">
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		<Card></Card>
-	  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
+  <div>
+  	<Header :cartOpen.sync="cartOpen"/>
+	  <main class="page">
+	  	<div class="page__header">
+	  		<div class="page__title">Каталог</div>
+	  		<ProductFilter></ProductFilter>
+	  		<p>{{cartOpen}}</p>
 	  	</div>
-	  </article>
-	 </div>
-  	<div class="cover"></div>
-  </main>
+		  <article class="catalog">
+		  	<Navbar></Navbar>
+		  	<div class="catalog__content">
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		<Card></Card>
+		  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
+		  	</div>
+		  </article>
+	  </main>
+		<div v-show="cartOpen" class="cover"></div>
+    <Cart v-if="cartOpen" :cartOpen.sync="cartOpen"></Cart>
+  	
+  </div>
 
   
 </template>
 
 <script>
 export default {
-	name: 'main-page'
+	name: 'main-page',
+	data(){
+		return {
+			cartOpen: false
+		}
+	}
 }
 </script>
 <style lang="scss">
