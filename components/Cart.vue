@@ -67,7 +67,8 @@ export default {
   },
   methods: {
   	cartHide(){
-  		this.$emit('update:cartOpen', false)
+  		this.$emit('update:cartOpen', false);
+  		document.body.classList.remove('freeze');
   	}
   },
   directives: {

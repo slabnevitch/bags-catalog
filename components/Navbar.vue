@@ -1,19 +1,13 @@
 <template>
 	<nav class="navbar">
-		<ul class="navbar__list">
+		<Preloader v-if="navs.length === 0"></Preloader>
+		<ul class="navbar__list" v-else>
 			<li class="navbar__item" v-for="item in navs"
 				:key="item.id"
 				:class="{'active':item.id === activeIndex}"
-				@click="setActiveCat(item.id)">
-				<a href="#" class="navbar__link">{{item.title}}</a>
+				@click.prevent="setActiveCat(item.id)">
+				<a href="#" class="navbar__link">{{item.name}}</a>
 			</li>
-			<!-- <li class="navbar__item">
-				<a href="#" class="navbar__link">Рюкзаки</a>
-			</li>
-			<li class="navbar__item">
-				<a href="#" class="navbar__link">Рюкзаки</a>
-			</li> -->
-			
 		</ul>
 	</nav>
 </template>
@@ -23,24 +17,38 @@
 
 		name: 'Navbar',
 
+		fetch(){
+			console.log('asyncDAta!')
+			// fetch('https://front-test.idalite.com/api/product-category')
+			// 	.then(response => response.json())
+			// 	.then(data => console.log(data));
+
+				fetch('https://front-test.idalite.com/api/product-category')
+				.then(response => response.json())
+				.then(data => {
+					// setTimeout(() => {
+					// 	this.navs = data
+					// }, 3000)
+					this.navs = data;
+				});
+		},
+
 		data () {
 			return {
 				activeIndex: 1,
 				navs: [
-				{
-					id: 1,
-					title: 'Рюкзаки'
-				},
-				{
-					id: 2,
-					title: 'Футболки'
-				},
-				{
-					id: 3,
-					title: 'Рубашки'
-				}
+				  { id: 1, name: 'Рюкзаки' },
+				  { id: 2, name: 'Сумки-мессенджеры' },
+				  { id: 3, name: 'Деловые сумки' }
 				]
+
 			}
+		},
+		computed: {
+			categories(){
+				return this.navs;
+			}
+
 		},
 		methods: {
 			setActiveCat(id){
@@ -52,9 +60,14 @@
 
 <style lang="scss">
 	.navbar {
-
 	}
-	.navbar__list {}
+	.navbar__list {
+		top: -1px;
+	  z-index: 10;
+	  position: -webkit-sticky;
+  position: sticky;
+		
+	}
 	.navbar__item {
 		list-style-type: none;
 		&:not(:last-child){

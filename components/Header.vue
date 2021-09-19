@@ -36,7 +36,8 @@ export default {
   	cartShow(){
   		console.log('cartShow!')
   		// this.cartOpen = !this.cartOpen;
-  		this.$emit('update:cartOpen', !this.cartOpen) //передаем измененное св-во. родителю. 	Обязательно если нужно изменить значение у родителя.
+  		this.$emit('update:cartOpen', true) //передаем измененное св-во. родителю. 	Обязательно если нужно изменить значение у родителя.
+  		document.body.classList.add('freeze');
     	}
   	}
   

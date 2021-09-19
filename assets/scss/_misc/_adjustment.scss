@@ -32,8 +32,13 @@ body{
 	font-size: 15px;
 	min-width: 320px;
 	position: relative;
+	overflow-x: hidden;
 	// line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
+
+	&.freeze{
+		overflow: hidden;
+	}
 
 }
 

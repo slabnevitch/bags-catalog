@@ -6,18 +6,18 @@
 	  	<div class="page__header">
 	  		<div class="page__title">Каталог</div>
 	  		<ProductFilter></ProductFilter>
+	  		<!-- <p>{{products}}</p> -->
 	  	</div>
 		  <article class="catalog">
 		  	<Navbar></Navbar>
 		  	<div class="catalog__content">
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
-		  		<Card></Card>
+		  		<!-- <Preloader v-if="!products"></Preloader> -->
+		  		<!-- <Card v-for="product in products" 
+		  			:key="product.id" 
+		  			:product="product"
+		  			v-else></Card> -->
+		  		<Card v-for="i in 200" :key="i"></Card>
+
 		  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
 		  	</div>
 		  </article>
@@ -33,9 +33,15 @@
 <script>
 export default {
 	name: 'main-page',
+	// asyncData(){
+	// 	return fetch('https://front-test.idalite.com/api/product')
+	// 		.then(response => response.json())
+	// 		.then(data => ({products: data}));
+	// },
 	data(){
 		return {
 			cartOpen: false
+			// products: []
 		}
 	}
 }
@@ -48,6 +54,11 @@ export default {
 	display: grid;
 	grid-template-columns: 1fr auto;
 	margin-bottom: 24px;
+	 position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+  background-color: #fff;
 }
 .page__title {
 	font-weight: bold;
