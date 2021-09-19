@@ -21,7 +21,7 @@
 	  	</div>
 	  </article>
 	 </div>
-  	
+  	<div class="cover"></div>
   </main>
 
   
@@ -57,5 +57,15 @@ export default {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
 	grid-gap: 16px;
+}
+.cover{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+opacity: 0.8;
+z-index: 50;
 }
 </style>
