@@ -79,6 +79,8 @@ export default {
 
 <style lang="scss">
 .cart {
+	transition: all 0.3s;
+	transform: translate3D(100%, 0, 0);
 	padding: 52px 48px ;
 	position: fixed;
 	right: 0;
@@ -91,6 +93,9 @@ export default {
 	z-index: 51;
 	box-shadow: -4px 0px 16px rgba(0, 0, 0, 0.05);
 border-radius: 8px 0px 0px 8px;
+	&.active{
+		transform: translate3D(0, 0, 0);
+	}
 }
 .cart__header {
 	display: flex;

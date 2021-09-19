@@ -37,7 +37,7 @@ export default {
   		console.log('cartShow!')
   		// this.cartOpen = !this.cartOpen;
   		this.$emit('update:cartOpen', true) //передаем измененное св-во. родителю. 	Обязательно если нужно изменить значение у родителя.
-  		document.body.classList.add('freeze');
+  		// document.body.classList.add('freeze');
     	}
   	}
   
@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
 	.header {
-		position: absolute;
+		position: fixed;
 		z-index: 50;
 		left: 0;
 		top: 0;
@@ -54,6 +54,7 @@ export default {
 		min-height: 40px;
 		box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
 		border-radius: 0px 0px 8px 8px;
+		background-color: #fff;
 	}
 	.wrapper {}
 	.header__inner {

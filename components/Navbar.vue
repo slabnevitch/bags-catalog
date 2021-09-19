@@ -62,7 +62,7 @@
 	.navbar {
 	}
 	.navbar__list {
-		top: -1px;
+		top: 66px + 32px + 70px;
 	  z-index: 10;
 	  position: -webkit-sticky;
   position: sticky;

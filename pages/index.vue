@@ -22,9 +22,9 @@
 		  	</div>
 		  </article>
 	  </main>
-		<div v-show="cartOpen" class="cover"></div>
-    <Cart v-if="cartOpen" :cartOpen.sync="cartOpen"></Cart>
-  	
+		<div class="cover" :class="{'active':cartOpen}"></div>
+    <Cart :cartOpen.sync="cartOpen" :class="{'active':cartOpen}"></Cart>
+  
   </div>
 
   
@@ -48,15 +48,15 @@ export default {
 </script>
 <style lang="scss">
 	.page{
-		padding-top: 66px + 32px;
 	}
 .page__header {
 	display: grid;
+		padding-top: 66px + 32px;
 	grid-template-columns: 1fr auto;
-	margin-bottom: 24px;
+	padding-bottom: 24px;
 	 position: -webkit-sticky;
   position: sticky;
-  top: -1px;
+  top: 0;
   z-index: 10;
   background-color: #fff;
 }
@@ -79,12 +79,19 @@ export default {
 }
 .cover{
 	position: fixed;
+	visibility: hidden;
+	opacity: 0;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	background: #FFFFFF;
-opacity: 0.8;
-z-index: 50;
+	z-index: 50;
+	transition: all 0.3s;
+
+	&.active{
+		visibility: visible;
+		opacity: 0.8;
+	}
 }
 </style>
