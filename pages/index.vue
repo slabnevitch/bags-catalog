@@ -6,7 +6,6 @@
 	  	<div class="page__header">
 	  		<div class="page__title">Каталог</div>
 	  		<ProductFilter></ProductFilter>
-	  		<p>{{cartOpen}}</p>
 	  	</div>
 		  <article class="catalog">
 		  	<Navbar></Navbar>
