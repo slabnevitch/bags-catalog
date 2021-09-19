@@ -1,7 +1,8 @@
 <template>
 	<nav class="navbar">
-		<Preloader v-if="navs.length === 0"></Preloader>
-		<ul class="navbar__list" v-else>
+		<!-- <p>{{categories}}</p> -->
+		<Preloader v-if="categories.length === 0"></Preloader>
+		<ul v-else class="navbar__list">
 			<li class="navbar__item" v-for="item in navs"
 				:key="item.id"
 				:class="{'active':item.id === activeIndex}"
@@ -16,31 +17,21 @@
 	export default {
 
 		name: 'Navbar',
+		props: ['activeIndex'],
 
-		fetch(){
-			console.log('asyncDAta!')
-			// fetch('https://front-test.idalite.com/api/product-category')
-			// 	.then(response => response.json())
-			// 	.then(data => console.log(data));
+		async fetch(){
+			this.navs = await fetch('https://front-test.idalite.com/api/product-category').then(response => response.json());
 
-				fetch('https://front-test.idalite.com/api/product-category')
-				.then(response => response.json())
-				.then(data => {
-					// setTimeout(() => {
-					// 	this.navs = data
-					// }, 3000)
-					this.navs = data;
-				});
 		},
 
 		data () {
 			return {
-				activeIndex: 1,
-				navs: [
-				  { id: 1, name: 'Рюкзаки' },
-				  { id: 2, name: 'Сумки-мессенджеры' },
-				  { id: 3, name: 'Деловые сумки' }
-				]
+				// navs: [
+				//   { id: 1, name: 'Рюкзаки' },
+				//   { id: 2, name: 'Сумки-мессенджеры' },
+				//   { id: 3, name: 'Деловые сумки' }
+				// ]
+				navs: []
 
 			}
 		},
@@ -52,7 +43,8 @@
 		},
 		methods: {
 			setActiveCat(id){
-				this.activeIndex = id;
+				// this.activeIndex = id;
+				this.$emit('update:activeIndex', id);
 			}
 		}
 	}

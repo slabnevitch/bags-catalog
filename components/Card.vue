@@ -3,7 +3,7 @@
 		<div class="card__header">
 			<div class="product-rating">
 				<img src="/img/rate-start.svg" alt="star">
-				<div class="product-rating-value">4.5</div>
+				<div class="product-rating-value">{{product.rating}}</div>
 			</div>
 			<div class="card__to-cart">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,11 +15,12 @@
 			</div>
 		</div>
 		<div class="card__img _prod-img">
-			<img src="/img/product.jpg" alt="">
+			<img :src="'https://frontend-test.idaproject.com' + product.photo" :alt="product.name">
 		</div>
-		<div class="product-title">Рюкзак Louis Vuitton Discovery</div>
-		<!-- <div class="product-title">{{product.name}}</div> -->
-		<div class="product-price">150 000 ₽</div>
+		<!-- <div class="product-title">Рюкзак Louis Vuitton Discovery</div> -->
+		<div class="product-title">{{product.name}}</div>
+		<!-- <div class="product-price">150 000 ₽</div> -->
+		<div class="product-price">{{product.price}}</div>
 	</div>
 </template>
 

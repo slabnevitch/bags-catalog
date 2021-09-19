@@ -5,18 +5,18 @@
 	  <main class="page">
 	  	<div class="page__header">
 	  		<div class="page__title">Каталог</div>
-	  		<ProductFilter></ProductFilter>
+	  		<ProductFilter :currentValue.sync="currentValue"></ProductFilter>
 	  		<!-- <p>{{products}}</p> -->
 	  	</div>
 		  <article class="catalog">
-		  	<Navbar></Navbar>
+		  	<Navbar :activeIndex.sync="activeIndex"></Navbar>
 		  	<div class="catalog__content">
-		  		<!-- <Preloader v-if="!products"></Preloader> -->
-		  		<!-- <Card v-for="product in products" 
+		  		<Preloader v-if="!products"></Preloader>
+		  		<Card v-for="product in filteredProducts" 
 		  			:key="product.id" 
 		  			:product="product"
-		  			v-else></Card> -->
-		  		<Card v-for="i in 200" :key="i"></Card>
+		  			v-else></Card>
+		  		<!-- <Card v-for="i in 200" :key="i"></Card> -->
 
 		  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
 		  	</div>
@@ -33,15 +33,26 @@
 <script>
 export default {
 	name: 'main-page',
-	// asyncData(){
-	// 	return fetch('https://front-test.idalite.com/api/product')
-	// 		.then(response => response.json())
-	// 		.then(data => ({products: data}));
-	// },
+	asyncData(){
+		return fetch('https://front-test.idalite.com/api/product')
+			.then(response => response.json())
+			.then(data => ({products: data}));
+	},
 	data(){
 		return {
-			cartOpen: false
-			// products: []
+			activeIndex: 1,
+			cartOpen: false,
+			currentValue: 'цене',
+			filterKeys: {
+				'цене': 'price',
+				'популярности': 'rating'
+			}
+		}
+	},
+	computed: {
+		filteredProducts(){
+			return this.products.filter(product => product.category === this.activeIndex)
+				.sort((a,b) => a[this.filterKeys[this.currentValue]] < b[this.filterKeys[this.currentValue]] ? 1 : -1);
 		}
 	}
 }

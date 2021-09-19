@@ -27,17 +27,18 @@ import ClickOutside from 'vue-click-outside'
 export default {
 
   name: 'ProductFilter',
-
+  props: ['currentValue'],
   data () {
     return {
     	filterVisibility: false,
-    	currentValue: 'цене',
+    	
     	allValues: ['цене', 'популярности']
     }
   },
   methods: {
   	changeValue(value){
-  		this.currentValue = value;
+  		// this.currentValue = value;
+  		this.$emit('update:currentValue', value);
   		this.filterVisibility = false;
   	},
   	filterHide(){
