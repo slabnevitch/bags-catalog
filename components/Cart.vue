@@ -50,13 +50,23 @@
 				<div class="cart-form__order" v-if="cart.length">
 					<div class="form-cart__title">Оформить заказ</div>
 					<label class="form-cart__label">
-						<input type="text" name="name" class="form-cart__input" v-model="formField.name" placeholder="Ваше имя">
+						<input type="text" name="name" class="form-cart__input" v-model="name" placeholder="Ваше имя"
+							:class="{invalid: !$v.name.required}">
 					</label>
 					<label class="form-cart__label">
-						<input type="tel" name="phone" class="form-cart__input" v-model="formField.phone" placeholder="Телефон">
+						<input type="text" name="phone" class="form-cart__input" 
+							v-model="phone"
+							v-mask="'+7 (###) ###-##-##'"
+							placeholder="Телефон"
+							:class="{invalid: !$v.phone.required}"
+							>
 					</label>
 					<label class="form-cart__label">
-						<input type="text" name="loc" class="form-cart__input" v-model="formField.loc" placeholder="Адрес">
+						<input type="text" name="loc" 
+							class="form-cart__input" 
+							v-model="loc"
+							placeholder="Адрес"
+							:class="{invalid: !$v.loc.required}">
 					</label>
 					<button class="btn">Отправить</button>
 					
@@ -70,6 +80,8 @@
 
 <script>
 	import ClickOutside from 'vue-click-outside'
+	import {required} from 'vuelidate/lib/validators' //импорт отдельных валидаторов
+
 export default {
 
   name: 'Cart',
@@ -77,13 +89,22 @@ export default {
   data () {
     return {
     	isSubmited: false,
-    	formField: {
-    		name: '',
-    		phone: '',
-    		loc: ''
-    	}
+		name: '',
+		phone: '',
+		loc: ''
     }
   },
+  validations:{
+		name: {//поля соответсвуют названиям моделей, привязанных к полям формы
+			required //названия экспортированных валидаторов
+		},
+		loc: {//поля соответсвуют названиям моделей, привязанных к полям формы
+			required
+		},
+		phone: {
+			required
+		}
+	},
   methods: {
   	cartHide(){
   		this.$emit('update:cartOpen', false);
@@ -94,8 +115,13 @@ export default {
   		this.$emit('remove-from-cart', id);
   	},
   	formSubmit(){
+  		if(this.$v.$invalid){
+  			this.$v.$touch()
+  			return
+  		}
   		this.$emit('clear-cart', null);
   		this.isSubmited = true;
+  		this.name = this.phone = this.loc = "";
   	}
   },
   directives: {
@@ -237,6 +263,10 @@ border-radius: 8px;
 	line-height: 21px;
 	color: #959DAD;
 	border: none;
+
+	&.invalid{
+		outline: 2px solid red;
+	}
 }
 .cart-ok{
 	flex: 1 1 auto;
