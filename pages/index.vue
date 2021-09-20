@@ -29,7 +29,8 @@
     <Cart :cartOpen.sync="cartOpen" 
     	:class="{'active':cartOpen}"
     	:cart="cart"
-    	@remove-from-cart="removeProduct"></Cart>
+    	@remove-from-cart="removeProduct"
+    	@clear-cart="removeAllProducts"></Cart>
   
   </div>
 
@@ -73,13 +74,17 @@ export default {
 				}
 			}
 
-			localStorage.setItem('productCart', JSON.stringify(this.cart));
-
+			this.updateLocalStorage();
 		},
 		removeProduct(id){
 			this.cart.splice(this.cart.findIndex(prod => prod.id === id), 1);
+			this.updateLocalStorage();
+		},
+		removeAllProducts(){
+			this.cart = [];
+		},
+		updateLocalStorage(){
 			localStorage.setItem('productCart', JSON.stringify(this.cart));
-
 		}
 	},
 	mounted(){
@@ -88,7 +93,7 @@ export default {
 		if(cartInLocal){
 			this.cart = cartInLocal;
 		}
-		// if(localStorage.getItem('person'))
+
 	}
 }
 </script>

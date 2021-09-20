@@ -106,12 +106,7 @@ textarea.input{
   cursor: pointer;
 	
   &:hover{
-     background-color: lighten(#1F1F1F, 5%);
-  }
-   
-		
-  &:active{
-   background-color: darken(#1F1F1F, 5%);
+     background-color: #59606D;
   }
    
 }

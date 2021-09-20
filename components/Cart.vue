@@ -6,11 +6,21 @@
 				<img src="/img/close.svg" alt="">
 			</div>
 		</div>
-		<div class="cart__text" v-if="cart.length">Товары в корзине</div>
-		<div class="cart__message" v-else="">Пока что вы ничего не добавили
-в корзину.</div>
-		<div class="cart__body" v-show="cart.length">
-			<ul class="cart__items">
+		<div class="cart__messages" v-show="!isSubmited">
+			<div class="cart__text" v-if="cart.length">Товары в корзине</div>
+			<div class="cart__message" v-else>Пока что вы ничего не добавили
+	в корзину.</div>
+			
+		</div>
+		<div class="cart__submit cart-ok" v-if="isSubmited">
+			<div class="cart-ok__img">
+				<img src="/img/ok.jpg" alt="alt">
+			</div>
+			<div class="cart-ok__title">Заявка успешно отправлена</div>
+			<div class="cart-ok__text">Вскоре наш менеджер свяжется с Вами</div>
+		</div>
+		<div class="cart__body" v-else>
+			<ul class="cart__items" v-show="cart.length">
 				<li class="cart__item item-cart" v-for="prod in cart" :key="prod.id">
 					<div class="_prod-img cart__img">
 						<img :src="'https://frontend-test.idaproject.com' + prod.photo" :alt="prod.name">
@@ -35,25 +45,26 @@
 					</div>
 				</li>
 			</ul>
+
+			<form class="cart__form form-cart" @submit.prevent="formSubmit">
+				<div class="cart-form__order" v-if="cart.length">
+					<div class="form-cart__title">Оформить заказ</div>
+					<label class="form-cart__label">
+						<input type="text" name="name" class="form-cart__input" v-model="formField.name" placeholder="Ваше имя">
+					</label>
+					<label class="form-cart__label">
+						<input type="tel" name="phone" class="form-cart__input" v-model="formField.phone" placeholder="Телефон">
+					</label>
+					<label class="form-cart__label">
+						<input type="text" name="loc" class="form-cart__input" v-model="formField.loc" placeholder="Адрес">
+					</label>
+					<button class="btn">Отправить</button>
+					
+				</div>
+				<button class="btn" v-else @click="cartHide">Перейти к выбору</button>
+			</form>
 		</div>
 
-		<div class="cart__form form-cart">
-			<div class="cart-form__order" v-if="cart.length">
-				<div class="form-cart__title">Оформить заказ</div>
-				<label class="form-cart__label">
-					<input type="text" class="form-cart__input" placeholder="Ваше имя">
-				</label>
-				<label class="form-cart__label">
-					<input type="tel" class="form-cart__input" placeholder="Телефон">
-				</label>
-				<label class="form-cart__label">
-					<input type="text" class="form-cart__input" placeholder="Адрес">
-				</label>
-				<button class="btn">Отправить</button>
-				
-			</div>
-			<button class="btn" v-else @click="cartHide">Перейти к выбору</button>
-		</div>
 	</div>
 </template>
 
@@ -65,16 +76,26 @@ export default {
   props: ['cartOpen', 'cart'],
   data () {
     return {
-
+    	isSubmited: false,
+    	formField: {
+    		name: '',
+    		phone: '',
+    		loc: ''
+    	}
     }
   },
   methods: {
   	cartHide(){
   		this.$emit('update:cartOpen', false);
+  		this.isSubmited = false;
   		// document.body.classList.remove('freeze');
   	},
   	prodRemove(id){
   		this.$emit('remove-from-cart', id);
+  	},
+  	formSubmit(){
+  		this.$emit('clear-cart', null);
+  		this.isSubmited = true;
   	}
   },
   directives: {
@@ -85,8 +106,8 @@ export default {
 
 <style lang="scss">
 .cart {
-	transition: all 0.3s;
-	transform: translate3D(100%, 0, 0);
+	display: flex;
+	flex-direction: column;
 	padding: 52px 48px ;
 	position: fixed;
 	right: 0;
@@ -95,6 +116,8 @@ export default {
 	max-width: 460px;
 	height: 100%;
 	overflow: auto;
+	transition: all 0.3s;
+	transform: translate3D(100%, 0, 0);
 	width: 100%;
 	z-index: 51;
 	box-shadow: -4px 0px 16px rgba(0, 0, 0, 0.05);
@@ -107,6 +130,7 @@ border-radius: 8px 0px 0px 8px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex: 0 0 auto;
 	margin-bottom: 24px;
 }
 .cart__title {
@@ -129,11 +153,13 @@ line-height: 28px;
 	color: #59606D;
 }
 .cart__body {
-	margin-bottom: 32px;
 	max-height: 400px;
-	overflow: auto;
+	flex: 1 1 auto;
 }
-.cart__items {}
+.cart__items {
+	margin-bottom: 32px;
+
+}
 .cart__item {
 }
 .item-cart {
@@ -212,5 +238,27 @@ border-radius: 8px;
 	color: #959DAD;
 	border: none;
 }
-.btn {}
+.cart-ok{
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.cart-ok__img {
+	margin-bottom: 24px;
+}
+.cart-ok__title {
+	margin-bottom: 3px;
+	font-weight: bold;
+font-size: 24px;
+text-align: center;
+}
+.cart-ok__text {
+	font-size: 16px;
+	line-height: 21px;
+	text-align: center;
+	color: #59606D;
+}
 </style>
