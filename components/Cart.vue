@@ -51,14 +51,14 @@
 					<div class="form-cart__title">Оформить заказ</div>
 					<label class="form-cart__label">
 						<input type="text" name="name" class="form-cart__input" v-model="name" placeholder="Ваше имя"
-							:class="{invalid: !$v.name.required}">
+							:class="{invalid: $v.name.$dirty && !$v.name.required}">
 					</label>
 					<label class="form-cart__label">
 						<input type="text" name="phone" class="form-cart__input" 
 							v-model="phone"
 							v-mask="'+7 (###) ###-##-##'"
 							placeholder="Телефон"
-							:class="{invalid: !$v.phone.required}"
+							:class="{invalid: $v.phone.$dirty && !$v.phone.required}"
 							>
 					</label>
 					<label class="form-cart__label">
@@ -66,7 +66,7 @@
 							class="form-cart__input" 
 							v-model="loc"
 							placeholder="Адрес"
-							:class="{invalid: !$v.loc.required}">
+							:class="{invalid: $v.loc.$dirty && !$v.loc.required}">
 					</label>
 					<button class="btn">Отправить</button>
 					
@@ -109,6 +109,8 @@ export default {
   	cartHide(){
   		this.$emit('update:cartOpen', false);
   		this.isSubmited = false;
+  		// this.$v.$reset();
+  		this.$v.$reset(); //сброс валидации поля
   		// document.body.classList.remove('freeze');
   	},
   	prodRemove(id){
@@ -122,6 +124,7 @@ export default {
   		this.$emit('clear-cart', null);
   		this.isSubmited = true;
   		this.name = this.phone = this.loc = "";
+  		this.$v.$reset(); //сброс валидации поля
   	}
   },
   directives: {
