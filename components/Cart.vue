@@ -6,25 +6,25 @@
 				<img src="/img/close.svg" alt="">
 			</div>
 		</div>
-		<div class="cart__message">Пока что вы ничего не добавили
+		<div class="cart__text" v-if="cart.length">Товары в корзине</div>
+		<div class="cart__message" v-else="">Пока что вы ничего не добавили
 в корзину.</div>
-		<div class="cart__text">Товары в корзине</div>
-		<div class="cart__body">
+		<div class="cart__body" v-show="cart.length">
 			<ul class="cart__items">
-				<li class="cart__item item-cart" v-for="i in 4">
+				<li class="cart__item item-cart" v-for="prod in cart" :key="prod.id">
 					<div class="_prod-img cart__img">
-						<img src="/img/product.jpg" alt="">
+						<img :src="'https://frontend-test.idaproject.com' + prod.photo" :alt="prod.name">
 					</div>
 					
-					<div class="product-title">Рюкзак Louis Vuitton Discovery</div>
-					<div class="product-price">150 000 ₽</div>
+					<div class="product-title">{{prod.name}}</div>
+					<div class="product-price">{{prod.price}}</div>
 
 					<div class="product-rating">
 						<img src="/img/rate-start.svg" alt="star">
 						<div class="product-rating-value">4.5</div>
 					</div>
 
-					<div class="product__remove">
+					<div class="product__remove" @click.stop="prodRemove(prod.id)">
 						<svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M0 5C0 4.44772 0.447715 4 1 4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H1C0.447715 6 0 5.55228 0 5Z"/>
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C7.73478 2 7.48043 2.10536 7.29289 2.29289C7.10536 2.48043 7 2.73478 7 3V4H13V3C13 2.73478 12.8946 2.48043 12.7071 2.29289C12.5196 2.10536 12.2652 2 12 2H8ZM15 4V3C15 2.20435 14.6839 1.44129 14.1213 0.87868C13.5587 0.31607 12.7956 0 12 0H8C7.20435 0 6.44129 0.31607 5.87868 0.87868C5.31607 1.44129 5 2.20435 5 3V4H3C2.44772 4 2 4.44772 2 5V19C2 19.7957 2.31607 20.5587 2.87868 21.1213C3.44129 21.6839 4.20435 22 5 22H15C15.7957 22 16.5587 21.6839 17.1213 21.1213C17.6839 20.5587 18 19.7957 18 19V5C18 4.44772 17.5523 4 17 4H15ZM4 6V19C4 19.2652 4.10536 19.5196 4.29289 19.7071C4.48043 19.8946 4.73478 20 5 20H15C15.2652 20 15.5196 19.8946 15.7071 19.7071C15.8946 19.5196 16 19.2652 16 19V6H4Z" />
@@ -38,18 +38,21 @@
 		</div>
 
 		<div class="cart__form form-cart">
-			<div class="form-cart__title">Оформить заказ</div>
-			<label class="form-cart__label">
-				<input type="text" class="form-cart__input" placeholder="Ваше имя">
-			</label>
-			<label class="form-cart__label">
-				<input type="tel" class="form-cart__input" placeholder="Телефон">
-			</label>
-			<label class="form-cart__label">
-				<input type="text" class="form-cart__input" placeholder="Адрес">
-			</label>
-			<button class="btn">Отправить</button>
-			<button class="btn">Перейти к выбору</button>
+			<div class="cart-form__order" v-if="cart.length">
+				<div class="form-cart__title">Оформить заказ</div>
+				<label class="form-cart__label">
+					<input type="text" class="form-cart__input" placeholder="Ваше имя">
+				</label>
+				<label class="form-cart__label">
+					<input type="tel" class="form-cart__input" placeholder="Телефон">
+				</label>
+				<label class="form-cart__label">
+					<input type="text" class="form-cart__input" placeholder="Адрес">
+				</label>
+				<button class="btn">Отправить</button>
+				
+			</div>
+			<button class="btn" v-else @click="cartHide">Перейти к выбору</button>
 		</div>
 	</div>
 </template>
@@ -59,7 +62,7 @@
 export default {
 
   name: 'Cart',
-  props: ['cartOpen'],
+  props: ['cartOpen', 'cart'],
   data () {
     return {
 
@@ -68,7 +71,10 @@ export default {
   methods: {
   	cartHide(){
   		this.$emit('update:cartOpen', false);
-  		document.body.classList.remove('freeze');
+  		// document.body.classList.remove('freeze');
+  	},
+  	prodRemove(id){
+  		this.$emit('remove-from-cart', id);
   	}
   },
   directives: {

@@ -1,9 +1,11 @@
 <template>
   <!-- <Tutorial/> -->
   <div>
-  	<Header :cartOpen.sync="cartOpen"/>
+  	<Header :cartOpen.sync="cartOpen"
+		:cart="cart"/>
 	  <main class="page">
 	  	<div class="page__header">
+	  	<!-- <p>{{cart}}</p> -->
 	  		<div class="page__title">Каталог</div>
 	  		<ProductFilter :currentValue.sync="currentValue"></ProductFilter>
 	  		<!-- <p>{{products}}</p> -->
@@ -15,6 +17,7 @@
 		  		<Card v-for="product in filteredProducts" 
 		  			:key="product.id" 
 		  			:product="product"
+		  			@add-to-cart="addProduct"
 		  			v-else></Card>
 		  		<!-- <Card v-for="i in 200" :key="i"></Card> -->
 
@@ -22,8 +25,11 @@
 		  	</div>
 		  </article>
 	  </main>
-		<div class="cover" :class="{'active':cartOpen}"></div>
-    <Cart :cartOpen.sync="cartOpen" :class="{'active':cartOpen}"></Cart>
+	<div class="cover" :class="{'active':cartOpen}"></div>
+    <Cart :cartOpen.sync="cartOpen" 
+    	:class="{'active':cartOpen}"
+    	:cart="cart"
+    	@remove-from-cart="removeProduct"></Cart>
   
   </div>
 
@@ -46,7 +52,8 @@ export default {
 			filterKeys: {
 				'цене': 'price',
 				'популярности': 'rating'
-			}
+			},
+			cart: []
 		}
 	},
 	computed: {
@@ -54,6 +61,34 @@ export default {
 			return this.products.filter(product => product.category === this.activeIndex)
 				.sort((a,b) => a[this.filterKeys[this.currentValue]] < b[this.filterKeys[this.currentValue]] ? 1 : -1);
 		}
+	},
+	methods: {
+		addProduct(product){
+			if(this.cart.length === 0){
+				this.cart.push(product);
+
+			}else{
+				if(!this.cart.some(el => el == product)){
+					this.cart.push(product);
+				}
+			}
+
+			localStorage.setItem('productCart', JSON.stringify(this.cart));
+
+		},
+		removeProduct(id){
+			this.cart.splice(this.cart.findIndex(prod => prod.id === id), 1);
+			localStorage.setItem('productCart', JSON.stringify(this.cart));
+
+		}
+	},
+	mounted(){
+		console.log(JSON.parse(localStorage.getItem('productCart')));
+		var cartInLocal = JSON.parse(localStorage.getItem('productCart'));
+		if(cartInLocal){
+			this.cart = cartInLocal;
+		}
+		// if(localStorage.getItem('person'))
 	}
 }
 </script>
