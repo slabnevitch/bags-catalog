@@ -14,12 +14,14 @@
 		  	<Navbar :activeIndex.sync="activeIndex"></Navbar>
 		  	<div class="catalog__content">
 		  		<Preloader v-if="!products"></Preloader>
-		  		<Card v-for="product in filteredProducts" 
-		  			:key="product.id" 
-		  			:product="product"
-		  			@add-to-cart="addProduct"
-		  			v-else></Card>
-		  		<!-- <Card v-for="i in 200" :key="i"></Card> -->
+		  		 <paginate v-else name="items" :list="filteredProducts" :per="12">
+			  		<Card v-for="product in paginated('items')" 
+			  			:key="product.id" 
+			  			:product="product"
+			  			@add-to-cart="addProduct"
+			  			></Card>
+
+		  		 </paginate>
 
 		  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
 		  	</div>
@@ -54,7 +56,8 @@ export default {
 				'цене': 'price',
 				'популярности': 'rating'
 			},
-			cart: []
+			cart: [],
+			paginate: ['items']
 		}
 	},
 	computed: {

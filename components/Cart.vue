@@ -154,6 +154,9 @@ border-radius: 8px 0px 0px 8px;
 	&.active{
 		transform: translate3D(0, 0, 0);
 	}
+	@include max-screen($sm){
+		padding: 22px 18px;
+	}  
 }
 .cart__header {
 	display: flex;
@@ -182,11 +185,12 @@ line-height: 28px;
 	color: #59606D;
 }
 .cart__body {
-	max-height: 400px;
 	flex: 1 1 auto;
 }
 .cart__items {
 	margin-bottom: 32px;
+	max-height: 400px;
+	overflow: auto;
 
 }
 .cart__item {
@@ -215,6 +219,12 @@ border-radius: 8px;
 		grid-column: 2/3;
 
 	}
+
+	@include max-screen($sm){
+		padding-left: 16px;
+		padding-right: 16px;
+		grid-template-columns: 50px 1fr auto;
+	}  
 }
 .product-title {}
 .product-rating-value {}
