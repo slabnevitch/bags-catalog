@@ -100,6 +100,7 @@ export default {
 	background: #FFFFFF;
 	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
 	border-radius: 8px;
+	z-index: 50;
 
 	&.visible{
 		opacity: 1;

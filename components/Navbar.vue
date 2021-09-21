@@ -52,18 +52,43 @@
 
 <style lang="scss">
 	.navbar {
+		// @include max-screen($sm){
+		// 	grid-column: 1/span 2;
+			
+		// }
 	}
 	.navbar__list {
 		top: 66px + 32px + 70px;
 	  z-index: 10;
 	  position: -webkit-sticky;
-  position: sticky;
+  	position: sticky;
+		
+		@include max-screen($sm){
+			position: fixed;
+			width: 100%;
+			left: 15px;
+			top: 115px;
+			display: grid;
+			grid-template-columns: repeat(3, auto);
+			grid-gap: 16px;
+			justify-content: start;
+			background-color: #fff;
+			z-index: 10;
+		}
+		@include max-screen($xss){
+			top: 140px;
+			grid-template-columns: repeat(2, auto);
+			grid-gap: 5px;
+		}
 		
 	}
 	.navbar__item {
 		list-style-type: none;
 		&:not(:last-child){
 			margin-bottom: 16px;
+			@include max-screen($xss){
+				margin-bottom: 0;
+			}
 		}
 		&.active{
 			.navbar__link{

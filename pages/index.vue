@@ -99,6 +99,13 @@ export default {
 </script>
 <style lang="scss">
 	.page{
+			@include max-screen($sm){
+			padding-top: 140px;
+			// padding-bottom: 0;
+		}
+		@include max-screen($xss){
+			padding-top: 200px;
+		}
 	}
 .page__header {
 	display: grid;
@@ -108,8 +115,21 @@ export default {
 	 position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 12;
   background-color: #fff;
+	@include max-screen($sm){
+		padding-top: 0;
+		position: fixed;
+		width: 100%;
+		padding-bottom: 10px;
+		padding-right: 30px;
+		top: 66px;
+		// padding-bottom: 0;
+	}
+	@include max-screen($xss){
+		display: block;
+	}  
+	
 }
 .page__title {
 	font-weight: bold;
@@ -122,7 +142,12 @@ export default {
 	display: grid;
 	grid-template-columns: 161px 1fr;
 	// column-gap: 16px;
+	@include max-screen($sm){
+		display: block;
+			
+	}
 }
+
 .catalog__content {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
