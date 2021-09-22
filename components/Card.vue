@@ -2,8 +2,16 @@
 	<div class="card">
 		<div class="card__header">
 			<div class="product-rating">
-				<img src="/img/rate-start.svg" alt="star">
-				<div class="product-rating-value">{{product.rating}}</div>
+				<!-- <img src="/img/rate-start.svg" alt="star"> -->
+				<div class="product-rating__icon">
+					<div class="product-rating__out"></div>
+					<div class="product-rating__box"
+						:style="{height: (product.rating/5) * 100 + '%'}">
+						<div class="product-rating__in"></div>
+						
+					</div>
+				</div>
+				<div class="product-rating__value">{{product.rating}}</div>
 			</div>
 			<div class="card__to-cart" @click="addToCart(product)">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +73,7 @@ border-radius: 8px;
 	display: flex;
 	align-items: center;
 }
-.product-rating-value {
+.product-rating__value {
 	margin-left: 5px;
 	color: #F2C94C;
 	font-size: 10px;
@@ -107,5 +115,33 @@ line-height: 18px;
 /* black */
 
 color: #1F1F1F;
+}
+.product-rating__icon {
+	position: relative;
+	width: 30px;
+	height: 30px;
+}
+.product-rating__out,
+.product-rating__in,
+.product-rating__box
+ {
+	@include absolute-center-old;
+	width: 30px;
+	height: 30px;
+	bottom: 0;
+	top: auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+}
+.product-rating__out{
+	background-image: url(/img/star-empty.svg);
+}
+.product-rating__in {
+	background-image: url(/img/star-full.svg);
+}
+.product-rating__box{
+	// height: 40%;
+	overflow: hidden;
 }
 </style>
