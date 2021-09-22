@@ -45,6 +45,7 @@
 			setActiveCat(id){
 				// this.activeIndex = id;
 				this.$emit('update:activeIndex', id);
+				this.$emit('current-page-reset');
 			}
 		}
 	}

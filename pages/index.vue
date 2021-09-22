@@ -7,24 +7,32 @@
 	  	<div class="page__header">
 	  	<!-- <p>{{cart}}</p> -->
 	  		<div class="page__title">Каталог</div>
-	  		<ProductFilter :currentValue.sync="currentValue"></ProductFilter>
+	  		<ProductFilter :currentValue.sync="currentValue"
+	  			@current-page-reset="currentPage = 0"></ProductFilter>
 	  		<!-- <p>{{products}}</p> -->
 	  	</div>
 		  <article class="catalog">
-		  	<Navbar :activeIndex.sync="activeIndex"></Navbar>
+		  	<Navbar :activeIndex.sync="activeIndex"
+		  		@current-page-reset="currentPage = 0"></Navbar>
+
 		  	<div class="catalog__content">
 		  		<Preloader v-if="!products"></Preloader>
-		  		 <paginate v-else name="items" :list="filteredProducts" :per="12">
-			  		<Card v-for="product in paginated('items')" 
-			  			:key="product.id" 
-			  			:product="product"
-			  			@add-to-cart="addProduct"
-			  			></Card>
-
-		  		 </paginate>
-
-		  		Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda ad laudantium quos maiores. Autem quis voluptatibus, molestiae quia ipsum officia ipsa iusto tempora veritatis voluptas est vitae sunt reprehenderit.
+		  		<Card v-else v-for="product in paginatedProducts" 
+		  			:key="product.id" 
+		  			:product="product"
+		  			@add-to-cart="addProduct"
+		  			></Card>
 		  	</div>
+		  	<!-- <p>{{currentPage}}</p> -->
+		  	<ul class="pagination">
+		  		<li class="pagination__item"
+		  			v-for="i in Math.ceil(filteredProducts.length/perPage)"
+		  			:key="i"
+		  			@click="currentPage = (i-1)"
+		  			:class="{active: currentPage === i - 1}">
+		  				{{i}}
+		  			</li>
+		  	</ul>
 		  </article>
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
@@ -57,13 +65,17 @@ export default {
 				'популярности': 'rating'
 			},
 			cart: [],
-			paginate: ['items']
+			perPage: 12,
+			currentPage: 0
 		}
 	},
 	computed: {
 		filteredProducts(){
 			return this.products.filter(product => product.category === this.activeIndex)
 				.sort((a,b) => a[this.filterKeys[this.currentValue]] < b[this.filterKeys[this.currentValue]] ? 1 : -1);
+		},
+		paginatedProducts(){
+			return this.filteredProducts.slice(this.perPage * this.currentPage, (this.perPage * this.currentPage) +this.perPage);
 		}
 	},
 	methods: {
@@ -153,7 +165,7 @@ export default {
 
 .catalog__content {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
 	grid-gap: 16px;
 }
 .cover{
@@ -171,6 +183,30 @@ export default {
 	&.active{
 		visibility: visible;
 		opacity: 0.8;
+	}
+}
+.pagination {
+	display: flex;
+	margin-top: 36px;
+	justify-content: center;
+	flex-wrap: wrap;
+	grid-column: 2/span 1;
+}
+.pagination__item {
+	width: 48px;
+	height: 48px;
+	flex: 0 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	margin: 0 8px;
+	border-radius: 50%;
+	font-size: 24px;
+	list-style-type: none;
+
+	&.active{
+		background-color: #959DAD;
 	}
 }
 </style>

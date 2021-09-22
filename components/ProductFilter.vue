@@ -39,6 +39,7 @@ export default {
   	changeValue(value){
   		// this.currentValue = value;
   		this.$emit('update:currentValue', value);
+  		this.$emit('current-page-reset');
   		this.filterVisibility = false;
   	},
   	filterHide(){

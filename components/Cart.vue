@@ -170,7 +170,9 @@ border-radius: 8px 0px 0px 8px;
 font-size: 32px;
 line-height: 41px;
 }
-.cart__close {}
+.cart__close {
+	cursor: pointer;
+}
 .cart__message {
 	margin-bottom: 24px;
 	font-size: 22px;
