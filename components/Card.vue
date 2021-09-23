@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<nuxt-link :to="'/' + product.id" class="card">
 		<div class="card__header">
 			<div class="product-rating">
 				<!-- <img src="/img/rate-start.svg" alt="star"> -->
@@ -29,7 +29,7 @@
 		<div class="product-title">{{product.name}}</div>
 		<!-- <div class="product-price">150 000 ₽</div> -->
 		<div class="product-price">{{product.price}}</div>
-	</div>
+	</nuxt-link>
 </template>
 
 <script>
