@@ -30,9 +30,9 @@
 		      :containerClass="'pagination'"
 		      :page-class="'pagination__item'"
 		      :prev-text="'Назад'"
-  			  :next-text="'Вперед'"
-  			  :click-handler="clickCallback"
-  			  :hide-prev-next="true"
+				  :next-text="'Вперед'"
+				  :click-handler="clickCallback"
+				  :hide-prev-next="true"
 		      >
 		    </paginate>
 		  	<p>{{currentPage}}</p>
@@ -47,6 +47,7 @@
 		  			</li>
 		  	</ul> -->
 		  </article>
+		  <!-- <Slider></Slider> -->
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
     <Cart :cartOpen.sync="cartOpen" 
