@@ -26,6 +26,7 @@ export default {
   plugins: [
     '@plugins/v-mask.js',
     '@plugins/vuelidate.js',
+    { src: '~/plugins/vuejs-paginate.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -36,7 +37,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/style-resources", '@nuxtjs/axios'],
+  modules: ["@nuxtjs/style-resources"],
 
   styleResources: {
     scss: ["./assets/scss/main.scss"]

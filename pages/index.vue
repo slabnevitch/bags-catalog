@@ -8,12 +8,12 @@
 	  	<!-- <p>{{cart}}</p> -->
 	  		<div class="page__title">Каталог</div>
 	  		<ProductFilter :currentValue.sync="currentValue"
-	  			@current-page-reset="currentPage = 0"></ProductFilter>
+	  			@current-page-reset="setCurrentPageFromFilters"></ProductFilter>
 	  		<!-- <p>{{products}}</p> -->
 	  	</div>
 		  <article class="catalog">
 		  	<Navbar :activeIndex.sync="activeIndex"
-		  		@current-page-reset="currentPage = 0"></Navbar>
+		  		@current-page-reset="setCurrentPageFromFilters"></Navbar>
 
 		  	<div class="catalog__content">
 		  		<Preloader v-if="!products"></Preloader>
@@ -23,8 +23,21 @@
 		  			@add-to-cart="addProduct"
 		  			></Card>
 		  	</div>
-		  	<!-- <p>{{currentPage}}</p> -->
-		  	<ul class="pagination">
+	  		<paginate 
+	  			v-model="currentPage"
+	  			:force-page="forcePage"
+		      :pageCount="Math.ceil(filteredProducts.length/perPage) - 1"
+		      :containerClass="'pagination'"
+		      :page-class="'pagination__item'"
+		      :prev-text="'Назад'"
+  			  :next-text="'Вперед'"
+  			  :click-handler="clickCallback"
+  			  :hide-prev-next="true"
+		      >
+		    </paginate>
+		  	<p>{{currentPage}}</p>
+		  	<p>filteredProducts: {{filteredProducts.length}}</p>
+		  	<!-- <ul class="pagination">
 		  		<li class="pagination__item"
 		  			v-for="i in Math.ceil(filteredProducts.length/perPage)"
 		  			:key="i"
@@ -32,7 +45,7 @@
 		  			:class="{active: currentPage === i - 1}">
 		  				{{i}}
 		  			</li>
-		  	</ul>
+		  	</ul> -->
 		  </article>
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
@@ -48,6 +61,7 @@
 </template>
 
 <script>
+
 export default {
 	name: 'main-page',
 	asyncData(){
@@ -66,7 +80,9 @@ export default {
 			},
 			cart: [],
 			perPage: 12,
-			currentPage: 0
+			currentPage: 0,
+			// initialPage: null,
+			forcePage: 1
 		}
 	},
 	computed: {
@@ -100,7 +116,15 @@ export default {
 		},
 		updateLocalStorage(){
 			localStorage.setItem('productCart', JSON.stringify(this.cart));
-		}
+		},
+		clickCallback: function(page) {
+	      console.log(page);
+	     	// page = this.currentPage = page;
+	    },
+	    setCurrentPageFromFilters(){
+	    	this.currentPage = 0;
+			this.forcePage = 1;
+	    }
 	},
 	mounted(){
 		console.log(JSON.parse(localStorage.getItem('productCart')));
@@ -189,8 +213,14 @@ export default {
 	display: flex;
 	margin-top: 36px;
 	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 	grid-column: 2/span 1;
+
+	li{
+		list-style-type: none;
+
+	}
 }
 .pagination__item {
 	width: 48px;
