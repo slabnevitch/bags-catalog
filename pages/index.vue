@@ -47,7 +47,7 @@
 		  			</li>
 		  	</ul> -->
 		  </article>
-		  <!-- <Slider></Slider> -->
+		  <Slider></Slider>
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
     <Cart :cartOpen.sync="cartOpen" 
@@ -224,16 +224,17 @@ export default {
 	}
 }
 .pagination__item {
-	width: 48px;
-	height: 48px;
+	width: 24px;
+	height: 24px;
+	padding: 15px;
 	flex: 0 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	margin: 0 8px;
+	// margin: 0 8px;
 	border-radius: 50%;
-	font-size: 24px;
+	font-size: 16px;
 	list-style-type: none;
 
 	&.active{

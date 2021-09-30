@@ -1,6 +1,10 @@
 import Vue from 'vue'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import style (>= Swiper 6.x)
-import 'swiper/swiper-bundle.css'
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
 
-Vue.use(VueAwesomeSwiper)
+// Vue.use(VueAwesomeSwiper)
+
+if (process.browser) {
+  const VueAwesomeSwiper = require('vue-awesome-swiper/ssr')
+  Vue.use(VueAwesomeSwiper)
+}

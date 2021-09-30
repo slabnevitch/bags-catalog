@@ -1,39 +1,43 @@
 <template>
-  <swiper ref="mySwiper" :options="swiperOptions">
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 4</swiper-slide>
-    <swiper-slide>Slide 5</swiper-slide>
-    <div class="swiper-pagination" slot="pagination"></div>
-  </swiper>
+  <div v-swiper:mySwiper="swiperOption">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" v-for="banner in banners">
+        <!-- <img :src="banner"> -->
+        <h1>{{banner}}</h1>
+      </div>
+    </div>
+    <div class="swiper-pagination swiper-pagination-bullets"></div>
+  </div>
 </template>
 
 <script>
-export default {
-
-  name: 'Slider',
-
-  data () {
-    return {
-    	swiperOptions: {
-          pagination: {
-            el: '.swiper-pagination'
-          },
-          // Some Swiper option/callback...
+  export default {
+    data () {
+      return {
+        banners: [ 'Skotnik', 'Bredov', 'Babunov' ],
+        swiperOption: {
+          autoplay: 5000,
+          initialSlide: 1,
+          loop: true,
+          pagination: '.swiper-pagination',
+          onSlideChangeEnd: swiper => {
+            console.log('onSlideChangeEnd', swiper.realIndex)
+          }
         }
+      }
+    },
+    mounted() {
+      console.log('app init')
+      setTimeout(() => {
+        this.banners.push('/5.jpg')
+        console.log('banners update')
+      }, 3000)
+      console.log(
+        'This is current swiper instance object', this.mySwiper, 
+        'It will slideTo banners 3')
+      this.mySwiper.slideTo(3)
     }
-  },
-   computed: {
-	  swiper() {
-	    return this.$refs.mySwiper.$swiper
-	  }
-	},
-	mounted() {
-	  console.log('Current Swiper instance object', this.swiper)
-	  this.swiper.slideTo(3, 1000, false)
-	}
-}
+  }
 </script>
 
 <style lang="css" scoped>

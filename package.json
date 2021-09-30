@@ -12,6 +12,7 @@
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
     "v-mask": "^2.2.4",
+    "vue-awesome-swiper": "^2.6.7",
     "vue-click-outside": "^1.1.0",
     "vuejs-paginate": "^2.1.0",
     "vuelidate": "^0.7.6"
