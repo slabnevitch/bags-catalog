@@ -35,8 +35,6 @@
 				  :hide-prev-next="true"
 		      >
 		    </paginate>
-		  	<p>{{currentPage}}</p>
-		  	<p>filteredProducts: {{filteredProducts.length}}</p>
 		  	<!-- <ul class="pagination">
 		  		<li class="pagination__item"
 		  			v-for="i in Math.ceil(filteredProducts.length/perPage)"
@@ -47,7 +45,7 @@
 		  			</li>
 		  	</ul> -->
 		  </article>
-		  <Slider></Slider>
+		  <Slider :cards="filteredProducts.slice(0, 20)"></Slider>
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
     <Cart :cartOpen.sync="cartOpen" 

@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link :to="'/' + product.id" class="card">
+	<div class="card">
 		<div class="card__header">
 			<div class="product-rating">
 				<!-- <img src="/img/rate-start.svg" alt="star"> -->
@@ -22,14 +22,17 @@
 
 			</div>
 		</div>
-		<div class="card__img _prod-img">
-			<img :src="'https://frontend-test.idaproject.com' + product.photo" :alt="product.name">
-		</div>
-		<!-- <div class="product-title">Рюкзак Louis Vuitton Discovery</div> -->
-		<div class="product-title">{{product.name}}</div>
-		<!-- <div class="product-price">150 000 ₽</div> -->
-		<div class="product-price">{{product.price}}</div>
-	</nuxt-link>
+		<nuxt-link :to="'/' + product.id">
+			<div class="card__img _prod-img">
+				<img :src="'https://frontend-test.idaproject.com' + product.photo" :alt="product.name">
+			</div>
+			<!-- <div class="product-title">Рюкзак Louis Vuitton Discovery</div> -->
+			<div class="product-title">{{product.name}}</div>
+			<!-- <div class="product-price">150 000 ₽</div> -->
+			<div class="product-price">{{product.price}}</div>
+			
+		</nuxt-link>
+	</div>
 </template>
 
 <script>
@@ -53,10 +56,12 @@ export default {
 
 <style lang="scss">
 .card {
+	display: block;
 	position: relative;
 	padding: 18px;
 	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
 border-radius: 8px;
+text-decoration: none;
 }
 .card__header {
 	padding: 18px;

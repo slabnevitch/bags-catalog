@@ -21,14 +21,14 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "./assets/scss/_misc/_vars.scss";
+@import "./assets/scss/_misc/_vars.scss";
 	.skot{
 		width: 100px;
 		height: 100px;
 		background-color: orange;
 
 		&.active{
-			background-color: pink;
+			background-color: $accent;
 		}
 	}
 	
