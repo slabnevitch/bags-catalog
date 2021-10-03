@@ -25,7 +25,7 @@
 			</div>
 
 			<div v-else class="card__in-cart">
-				<img src="/img/check.svg" alt="">
+				<img src="/bags-catalog/img/check.svg" alt="">
 			</div>
 			<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 		</div>
@@ -145,10 +145,10 @@ color: #1F1F1F;
 	background-size: 100%;
 }
 .product-rating__out{
-	background-image: url(/img/star-empty.svg);
+	background-image: url(/bags-catalog/img/star-empty.svg);
 }
 .product-rating__in {
-	background-image: url(/img/star-full.svg);
+	background-image: url(/bags-catalog/img/star-full.svg);
 }
 .product-rating__box{
 	// height: 40%;

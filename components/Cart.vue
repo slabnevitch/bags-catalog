@@ -30,8 +30,16 @@
 					<div class="product-price">{{prod.price}}</div>
 
 					<div class="product-rating">
-						<img src="/img/rate-start.svg" alt="star">
-						<div class="product-rating-value">4.5</div>
+						<!-- <img src="/img/rate-start.svg" alt="star"> -->
+						<div class="product-rating__icon">
+							<div class="product-rating__out"></div>
+							<div class="product-rating__box"
+								:style="{height: (prod.rating/5) * 100 + '%'}">
+								<div class="product-rating__in"></div>
+								
+							</div>
+						</div>
+						<div class="product-rating__value">{{prod.rating}}</div>
 					</div>
 
 					<div class="product__remove" @click.stop="prodRemove(prod.id)">
