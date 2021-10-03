@@ -34,6 +34,7 @@
 				  :next-text="'Вперед'"
 				  :click-handler="clickCallback"
 				  :hide-prev-next="true"
+				  class="pagination"
 		      >
 		    </paginate>
 		  	<!-- <ul class="pagination">

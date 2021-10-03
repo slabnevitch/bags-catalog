@@ -78,7 +78,9 @@
 
 <style lang="scss">
 .swiper-container{
-  
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: 12px;
 }
 .swiper-button-prev{
   left: 0px;

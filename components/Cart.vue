@@ -14,7 +14,7 @@
 		</div>
 		<div class="cart__submit cart-ok" v-if="isSubmited">
 			<div class="cart-ok__img">
-				<img src="/img/ok.jpg" alt="alt">
+				<img :src="$config.baseURL + '/img/ok.jpg'" alt="alt">
 			</div>
 			<div class="cart-ok__title">Заявка успешно отправлена</div>
 			<div class="cart-ok__text">Вскоре наш менеджер свяжется с Вами</div>

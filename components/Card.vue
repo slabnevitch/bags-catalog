@@ -25,7 +25,7 @@
 			</div>
 
 			<div v-else class="card__in-cart">
-				<img src="/bags-catalog/img/check.svg" alt="">
+				<img :src="$config.baseURL +'/img/check.svg'" alt="">
 			</div>
 			<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 		</div>
@@ -35,7 +35,6 @@
 			</div>
 			<div class="product-title">{{product.name}}</div>
 			<div class="product-price">{{product.price}}</div>
-			
 		</nuxt-link>
 	</div>
 </template>

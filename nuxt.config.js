@@ -28,6 +28,10 @@ export default {
     'swiper/dist/css/swiper.css'
   ],
 
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || '/bags-catalog/' //для префиксов путей картинок из папки static при сборке для gh-pages
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@plugins/v-mask.js',
