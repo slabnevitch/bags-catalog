@@ -20,6 +20,7 @@
 		  		<Card v-else v-for="product in paginatedProducts" 
 		  			:key="product.id" 
 		  			:product="product"
+		  			:isInCart="cart.find(item => item.id === product.id) != undefined"
 		  			@add-to-cart="addProduct"
 		  			></Card>
 		  	</div>
@@ -45,7 +46,13 @@
 		  			</li>
 		  	</ul> -->
 		  </article>
-		  <Slider :cards="filteredProducts.slice(0, 20)"></Slider>
+		  <section class="similar">
+		  	<div class="page__title">Похожие товары</div>
+			  <Slider :cards="filteredProducts.slice(0, 20)"
+			  	@add-to-cart="addProduct"
+			  	:cart="cart"></Slider>
+		  	
+		  </section>
 	  </main>
 	<div class="cover" :class="{'active':cartOpen}"></div>
     <Cart :cartOpen.sync="cartOpen" 
@@ -95,6 +102,7 @@ export default {
 	},
 	methods: {
 		addProduct(product){
+
 			if(this.cart.length === 0){
 				this.cart.push(product);
 
@@ -238,5 +246,18 @@ export default {
 	&.active{
 		background-color: #959DAD;
 	}
+}
+.similar{
+	padding: 50px;
+	position: relative;
+	.page__title{
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	@include max-screen($xs){
+		padding-left: 0;
+		padding-right: 0;
+	}  
 }
 </style>

@@ -77,7 +77,8 @@
 			z-index: 10;
 		}
 		@include max-screen($xss){
-			top: 140px;
+			top: 137px;
+			padding-bottom: 10px;
 			grid-template-columns: repeat(2, auto);
 			grid-gap: 5px;
 		}
