@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/271", {data:[{}],fetch:{"Product:0":{posts:[],items:[],product:{id:271,name:"РЮКЗАК SOFT TRUNK PM",price:340000,rating:3,photo:"\u002Fupload\u002Fproduct\u002Fbackpack28-cce6.6rauxe.jpg",category:1},mountains:[]}},mutations:void 0});

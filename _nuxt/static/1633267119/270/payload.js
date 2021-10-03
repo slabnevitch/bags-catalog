@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/270", {data:[{}],fetch:{"Product:0":{posts:[],items:[],product:{id:270,name:"РЮКЗАК ARMAND",price:315000,rating:3,photo:"\u002Fupload\u002Fproduct\u002Fbackpack27-20ab.q58utm.jpg",category:1},mountains:[]}},mutations:void 0});
