@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/387", {data:[{}],fetch:{"Product:0":{posts:[],items:[],product:{id:387,name:"РЮКЗАК STEAMER",price:485000,rating:0,photo:"\u002Fupload\u002Fproduct\u002Fbackpack38-9ad10.tq3x3y.jpg",category:1},mountains:[]}},mutations:void 0});
