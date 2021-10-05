@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/386", (function(a){return {data:[{}],fetch:{"Product:0":{posts:[],items:[],product:{id:386,name:"РЮКЗАК CHRISTOPHER PM",price:305000,rating:a,photo:"\u002Fupload\u002Fproduct\u002Fbackpack37-1cda.30hrv6.jpg",category:a},mountains:[]}},mutations:void 0}}(1)));
